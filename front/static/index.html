@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #0f172a;
+      --bg-accent: #1e293b;
+      --card: rgba(15, 23, 42, 0.82);
+      --card-border: rgba(148, 163, 184, 0.18);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --input: rgba(15, 23, 42, 0.72);
+      --input-border: rgba(148, 163, 184, 0.28);
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --shadow: 0 24px 80px rgba(15, 23, 42, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.16), transparent 30%),
+        linear-gradient(135deg, #020617 0%, #0f172a 45%, #111827 100%);
+      color: var(--text);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(2, 6, 23, 0.35);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .brand-panel {
+      position: relative;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0.42)),
+        linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 165, 233, 0.08));
+    }
+
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9 70%, #2563eb);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #f8fafc;
+      box-shadow: 0 18px 40px rgba(14, 165, 233, 0.35);
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    .brand-copy p {
+      margin: 18px 0 0;
+      max-width: 34ch;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .status-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .status-chip {
+      padding: 12px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.35);
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .form-panel {
+      padding: 48px;
+      background: rgba(15, 23, 42, 0.74);
+      display: flex;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .card .subtitle {
+      margin: 10px 0 28px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--input-border);
+      border-radius: 14px;
+      background: var(--input);
+      color: var(--text);
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    input:focus {
+      border-color: rgba(56, 189, 248, 0.75);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .row a {
+      color: #bae6fd;
+      text-decoration: none;
+    }
+
+    .row a:hover {
+      text-decoration: underline;
+    }
+
+    .checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--primary);
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 15px 18px;
+      font: inherit;
+      font-weight: 700;
+      color: #082f49;
+      background: linear-gradient(135deg, #7dd3fc, #38bdf8 50%, #0ea5e9);
+      cursor: pointer;
+      box-shadow: 0 18px 30px rgba(14, 165, 233, 0.25);
+      transition: transform 160ms ease, filter 160ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-panel,
+      .form-panel {
+        padding: 32px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 14px;
+      }
+
+      .shell {
+        border-radius: 22px;
+      }
+
+      .brand-copy h1 {
+        font-size: 2.5rem;
+      }
+
+      .row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="brand-panel" aria-label="Welcome panel">
+      <div class="brand-mark">FL</div>
+      <div class="brand-copy">
+        <h1>Welcome back.</h1>
+        <p>Sign in to continue to your dashboard, manage projects, and keep your team moving.</p>
+        <div class="status-row" aria-label="Highlights">
+          <span class="status-chip">Secure access</span>
+          <span class="status-chip">Fast login</span>
+          <span class="status-chip">Team ready</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel" aria-label="Login form">
+      <div class="card">
+        <h2>Sign in</h2>
+        <p class="subtitle">Use your email and password to access your account.</p>
+
+        <form>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="name@example.com" autocomplete="email" required>
+          </label>
+
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+          </label>
+
+          <div class="row">
+            <label class="checkbox">
+              <input type="checkbox" name="remember">
+              Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit">Log in</button>
+        </form>
+
+        <p class="footer-note">New here? <a href="#">Create an account</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
