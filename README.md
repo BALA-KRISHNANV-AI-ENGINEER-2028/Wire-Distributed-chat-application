@@ -12,8 +12,8 @@ Wire is a recruiter-friendly, production-oriented real-time chat platform built 
 
 ## Quick demo
 
-- **Live demo:** `[<add-url>](https://wire-distributed-chat-application-ej74-d75v0kofe-wirechat.vercel.app/)`
-- **Backend API:** `[<add-url>](https://wire-distributed-chat-application.onrender.com/)`
+- **Live demo:** `https://wire-distributed-chat-application-ej74-d75v0kofe-wirechat.vercel.app/`
+- **Backend API:** `https://wire-distributed-chat-application.onrender.com/`
 
 
 ## What recruiters should open
